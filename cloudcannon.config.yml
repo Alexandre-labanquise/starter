@@ -1,15 +1,15 @@
 paths:
   data: data
   collections: content
-  includes: layouts
-  layouts: layouts
-  static: static
+  includes: themes/swingingGyropod/layouts
+  layouts: themes/swingingGyropod/layouts
+  static: themes/swingingGyropod/static
   uploads: static/uploads
   source: ''
   archetypes: archetypes
-  assets: assets
+  assets: themes/swingingGyropod/assets
   content: content
-  pages: content
+  pages: themes/swingingGyropod/layouts/page
   publish: public
   config: ''
 collections_config: {}
