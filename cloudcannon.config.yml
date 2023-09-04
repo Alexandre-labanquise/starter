@@ -1,20 +1,20 @@
 paths:
   data: data
   collections: content
-  includes: themes/swingingGyropod/layouts
-  layouts: themes/swingingGyropod/layouts
-  static: themes/swingingGyropod/static
-  uploads: themes/swingingGyropod/static/uploads
+  includes: layouts
+  layouts: layouts
+  static: static
+  uploads: static/uploads
   source: ''
   archetypes: archetypes
-  assets: themes/swingingGyropod/assets
+  assets: assets
   content: content
-  pages: themes/swingingGyropod/layouts/page
+  pages: layouts/page
   publish: public
   config: ''
 collections_config:
   Pages:
-    path: themes/swingingGyropod/layouts/page
+    path: layouts/page
     output: true
     name: Pages
     icon: notes

@@ -2,5 +2,6 @@
   "files.associations": {
     "*.xml": "html",
     "*.svg": "html"
-  }
+  },
+  "i18n-ally.localesPaths": ["themes/declaration/i18n"]
 }
