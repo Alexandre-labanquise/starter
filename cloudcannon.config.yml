@@ -33,6 +33,9 @@ collections_config:
         correct_orientation: true
         image_size_attributes: true
         resize_style: contain
+    _enabled_editors:
+      - content
+      - visual
     _inputs: {}
     _select_data: {}
     _structures: {}
