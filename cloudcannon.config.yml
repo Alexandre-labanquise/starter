@@ -12,7 +12,34 @@ paths:
   pages: themes/swingingGyropod/layouts/page
   publish: public
   config: ''
-collections_config: {}
+collections_config:
+  Pages:
+    path: themes/swingingGyropod/layouts/page
+    output: true
+    name: Pages
+    icon: notes
+    _editables:
+      text:
+        bold: true
+        italic: true
+        link: true
+        redo: true
+        removeformat: true
+        undo: true
+      content:
+        image_size_attributes: true
+        resize_style: contain
+      image:
+        correct_orientation: true
+        image_size_attributes: true
+        resize_style: contain
+    _inputs: {}
+    _select_data: {}
+    _structures: {}
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+    schemas: {}
 _inputs: {}
 _select_data: {}
 _structures: {}
