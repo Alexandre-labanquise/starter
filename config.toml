@@ -1,0 +1,29 @@
+defaultContentLanguage = 'fr'
+title = "{{TENANT}}"
+theme = ["swingingGyropod", "declaration"]
+
+[params]
+  tenant = ""
+
+[languages]
+  [languages.fr]
+    languageCode = "fr"
+    contentDir = 'content/french'
+    languageName = 'Français'
+    weight = 1
+  [languages.en]
+    languageCode = "en"
+    contentDir = 'content/english'
+    languageName = 'English'
+    weight = 2
+
+[[menu.header]]
+  name = 'Tutoriel'
+  identifier = 'tutoriel'
+  url = '/tutoriel/'
+  weight = '1'
+[[menu.header]]
+  name = '5 Erreurs à éviter'
+  identifier = 'erreurs'
+  url = '/5-erreurs-a-eviter/'
+  weight = '2'

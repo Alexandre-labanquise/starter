@@ -1,0 +1,10 @@
+public/
+.hugo_build.lock
+.env
+
+content
+
+resources/_gen/
+.terraform
+*.tfstate*
+*.lock.*

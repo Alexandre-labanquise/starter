@@ -1,0 +1,16 @@
+<header>
+  <a href="/" class="logo-container">
+    <img
+      id="logo"
+      src="/img/logo.jpg"
+      srcset="/img/logo.webp 5rem, /img/logo.jpg 5rem"
+      alt="Gyropode man logo"
+    />
+    <span>Le gyropote</span>
+  </a>
+  <nav>
+    {{ range .Site.Menus.header }}
+      <a href="{{ .URL }}">{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</header>

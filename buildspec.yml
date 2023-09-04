@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.x
+    commands:
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - apt-get update
+      - apt install -y nodejs jq
+      - echo Installing hugo
+      - curl -L -o hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.92.1/hugo_extended_0.92.1_Linux-64bit.deb
+      - dpkg -i hugo.deb
+      - (cd themes/declaration && sh init.sh)
+
+  pre_build:
+    commands:
+      - echo In pre_build phase..
+      - echo Current environment is $ENV
+      - cp config-${ENV}.toml config.toml
+      - echo Generating content
+      - sh init-export.sh
+      - (cd themes/declaration && sh run.sh)
+      - sh run.sh
+      - echo End of the pre_build phase..
+
+  build:
+    commands:
+      - echo In build phase..
+      - hugo --cleanDestinationDir --minify
+      - hugo deploy --force
+      - echo End of the build phase..

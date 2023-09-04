@@ -1,0 +1,34 @@
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>{{ if .Params.name }}{{ .Params.name }}{{ else }}{{ .Site.Title }}{{ end }}{{.Site.Title}}</title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1" />
+  <meta name="description" content="{{ if .Site.Params.description }}{{ .Site.Params.description }}{{ else }}{{ .Site.Title }}{{ end }}">
+  {{ $style := resources.Get "/sass/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link
+    rel="preload"
+    href="{{ $style.Permalink }}"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  {{ $poppins := resources.Get "/fonts/Poppins-Regular.woff2" }}
+  {{ $poppinsBold := resources.Get "/fonts/Poppins-Bold.woff2" }}
+  <link
+    rel="preload"
+    as="font"
+    href="{{ $poppins.Permalink }}"
+    type="font/woff2"
+    crossorigin
+  />
+  <link
+    rel="preload"
+    as="font"
+    href="{{ $poppinsBold.Permalink }}"
+    type="font/woff2"
+    crossorigin
+  />
+  <noscript>
+    <link rel="stylesheet" href="{{ $style.Permalink }}" />
+  </noscript>
+  <link rel="shortcut icon" type="image/png" href="/img/favicon.png" />
+</head>

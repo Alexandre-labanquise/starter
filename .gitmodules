@@ -1,0 +1,3 @@
+[submodule "themes/declaration"]
+	path = themes/declaration
+	url = https://github.com/Labanquise/declaration-theme

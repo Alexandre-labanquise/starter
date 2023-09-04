@@ -1,0 +1,37 @@
+defaultContentLanguage = 'fr'
+title = "{{TENANT}}"
+theme = ["swingingGyropod", "declaration"]
+
+
+[languages]
+  [languages.fr]
+    languageCode = "fr"
+    contentDir = 'content/french'
+    languageName = 'Français'
+    weight = 1
+  [languages.en]
+    languageCode = "en"
+    contentDir = 'content/english'
+    languageName = 'English'
+    weight = 2
+
+[params]
+  tenant = "{{TENANT}}"
+  description = "la raison d'être de mon site"
+
+[[menu.header]]
+  name = 'Tutoriel'
+  identifier = 'tutoriel'
+  url = '/tutoriel/'
+  weight = '1'
+[[menu.header]]
+  name = '5 Erreurs à éviter'
+  identifier = 'erreurs'
+  url = '/5-erreurs-a-eviter/'
+  weight = '2'
+
+[[deployment.targets]]
+# An arbitrary name for this target.
+name = "S3Deployment"
+URL = "s3://labali.se?region=eu-west-3&prefix={{TENANT}}/"
+cloudFrontDistributionID="REPLACE_THIS_WITH_YOUR_DISTRIBUTION_ID"

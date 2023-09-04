@@ -1,0 +1,18 @@
+{{ define "article" }}
+<section class="articles">
+  <div class="left-content">
+    {{ if not (eq .title "") }}
+    <h3 class="titre">{{.title | safeHTML}}</h3>
+    {{ end }}
+
+    {{ if not (eq .content "") }}
+    <div class="text">
+      {{.content | safeHTML}}
+    </div>
+    {{ end }}
+  </div>
+  {{ range .images }}
+  <img class="pic" src={{.src | safeHTML}} width="550" height="550" loading="lazy" alt={{.alt |safeHTML}}>
+  {{ end }}
+</section>
+{{ end }}

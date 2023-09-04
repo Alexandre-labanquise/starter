@@ -1,0 +1,26 @@
+#docker-compose file
+version: "3.5"
+
+# Do not use this image on production !!!
+services:
+  node:
+    container_name: ${APP_NAME}
+    image: klakegg/hugo:0.107.0-ext-alpine
+    volumes:
+      - .:/usr/src:cached
+    working_dir: /usr/src
+    ports:
+      - ${PORT}:${PORT}
+    command: server
+    env_file: .env
+    networks:
+      default:
+      labanquise-network:
+        aliases:
+          - ${APP_NAME}
+
+networks:
+  default:
+    name: ${APP_NAME}-network
+  labanquise-network:
+    external: true

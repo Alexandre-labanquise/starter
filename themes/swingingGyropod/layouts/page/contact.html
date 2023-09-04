@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <h1>Contact en cas de chute</h1>
+  <form id="contact-form">
+    <div class="form-content">
+      <label for="email">Entrez votre email</label>
+      <input name="email" id="email" type="email" />
+      <label for="chutes">Comment êtes-vous tombé ?</label>
+      <select name="reason" id="chutes">
+        <option value="overspeed">Overspeed</option>
+        <option value="telephone">Telephone au guidon</option>
+        <option value="spin">Virage trop serré</option>
+        <option value="collision">Collision avec un autre usager</option>
+        <option value="other">Autre</option>
+      </select>
+    </div>
+    <button type="submit">Envoyer</button>
+  </form>
+  {{ $js := resources.Get "/js/contact.js" | resources.Minify | js.Build (dict "params" (dict "tenant"
+    site.Params.description) "format" "esm")
+  }}
+  <script type="module" src="{{ $js.Permalink }}" async></script>
+{{ end }}

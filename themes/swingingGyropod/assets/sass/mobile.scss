@@ -1,0 +1,12 @@
+/* breakpoint */
+$mobile-width: 76.875rem;
+@mixin mobile {
+  @media screen and (max-width: 76.875rem) {
+    @content;
+  }
+}
+
+@include mobile() {
+  body: {
+  }
+}
