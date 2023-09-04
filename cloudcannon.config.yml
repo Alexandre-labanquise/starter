@@ -43,12 +43,14 @@ collections_config:
     disable_add_folder: false
     disable_file_actions: false
     schemas: {}
+_enabled_editors:
+  - content
+  - visual
 _inputs: {}
 _select_data: {}
 _structures: {}
 _editables: {}
 data_config: {}
-editor: {}
 source_editor:
   tab_size: 2
   theme: monokai
