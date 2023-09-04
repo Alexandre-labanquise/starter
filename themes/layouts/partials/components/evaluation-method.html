@@ -1,0 +1,22 @@
+{{ define "evaluation-method" }}
+<h2>{{i18n "evaluation_method_title"}}</h2>
+<p>{{i18n "evaluation_method_description"}}</p>
+<p>{{i18n "evaluation_method_referential" | safeHTML}}</p>
+<ul>
+  <li>
+    {{i18n "evaluation_method_referential_list_0" | safeHTML}}
+  </li>
+  <li>
+    {{i18n "evaluation_method_referential_list_1" | safeHTML}}
+  </li>
+</ul>
+<p>{{i18n "evaluation_method_sintesi"}}</p>
+<ul>
+  <li>{{i18n "evaluation_method_sintesi_list_0"}}</li>
+  <li>{{i18n "evaluation_method_sintesi_list_1"}}</li>
+  <li>{{i18n "evaluation_method_sintesi_list_2"}}</li>
+  <li>{{i18n "evaluation_method_sintesi_list_3"}}</li>
+</ul>
+{{$date:=time.Format ":date_full" .Params.date}}
+<p>{{i18n "evaluation_time" (dict "date" $date)}}</p>
+{{ end }}

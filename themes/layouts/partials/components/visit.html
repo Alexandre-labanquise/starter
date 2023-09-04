@@ -1,0 +1,55 @@
+{{ define "visit" }}
+
+{{$name:=default "accueil" .name}}
+
+<h3>{{i18n "" (dict "index" .index "name" $name)}}</h3>
+<ul>
+  <li>
+    {{i18n "visit_objective" (dict "objective" .objective) | safeHTML}}
+  </li>
+  <li>
+    {{i18n "visit_target" (dict "target" .target) | safeHTML}}
+  </li>
+</ul>
+
+{{$water:=0}}
+{{$ges:=0}}
+
+<table class="visit-component">
+  <thead>
+    <th>{{i18n "visit_date"}}</th>
+    <th>{{i18n "visit_url"}}</th>
+    <th>{{i18n "visit_request_number"}}</th>
+    <th>{{i18n "visit_page_size"}}</th>
+    <th>{{i18n "visit_dom_size"}}</th>
+    <th>{{i18n "visit_gas"}}</th>
+    <th>{{i18n "visit_water"}}</th>
+    <th>{{i18n "visit_ecoindex"}}</th>
+    <th>{{i18n "visit_grade"}}</th>
+  </thead>
+  <tbody>
+    {{ range .completePages }}
+    {{$water = add $water .water}}
+    {{$ges = add $ges .ges}}
+    <tr>
+      <td>{{.date}}</td>
+      <td>{{.url}}</td>
+      <td>{{.requests}}</td>
+      <td>{{math.Round .size}}</td>
+      <td>{{.nodes}}</td>
+      <td>{{.ges}}</td>
+      <td>{{.water}}</td>
+      <td>{{.score}}</td>
+      <td><span class="page-eco-index grade-{{.grade}}">{{.grade}}</span></td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+
+<ul>
+  {{ block "water-consumption" (dict "water" (mul $water 10) ) }}
+
+  {{ end }}
+  {{ block "gaz-consumption" (dict "ges" $ges "converter" .converter) }}{{end}}
+</ul>
+{{ end }}

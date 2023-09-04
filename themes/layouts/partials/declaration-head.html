@@ -1,0 +1,7 @@
+<head>
+  {{ $style := resources.Get "/sass/declaration.scss" | resources.ToCSS | resources.Fingerprint | resources.Minify }}
+  <link rel="preload" href="{{ $style.Permalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  {{ $scoreButtonJs := resources.Get "/js/score_button.js" | js.Build (dict "format" "esm") |
+  resources.Minify}}
+  <script type="module" src="{{ $scoreButtonJs.Permalink }}" defer async></script>
+</head>
