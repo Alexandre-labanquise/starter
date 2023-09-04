@@ -9,7 +9,7 @@ paths:
   archetypes: archetypes
   assets: assets
   content: content
-  pages: layouts/page
+  pages: layouts
   publish: public
   config: ''
 collections_config:
