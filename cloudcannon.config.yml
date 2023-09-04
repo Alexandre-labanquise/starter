@@ -4,7 +4,7 @@ paths:
   includes: themes/swingingGyropod/layouts
   layouts: themes/swingingGyropod/layouts
   static: themes/swingingGyropod/static
-  uploads: static/uploads
+  uploads: themes/swingingGyropod/static/uploads
   source: ''
   archetypes: archetypes
   assets: themes/swingingGyropod/assets
