@@ -1,8 +1,0 @@
-{{ define "water-consumption" }}
-{{$water:=.water | truncate 5 ""}}
-{{$bottles:=(math.Round (div .water (mul 6 1.5))) | truncate 4 ""}}
-<li>{{i18n "water_consumption" (dict "water" $water "bottles" $bottles) | safeHTML}} {{ if .isAverage }}
-  <sup>*</sup>
-  {{ end }}
-</li>
-{{ end }}
