@@ -8,6 +8,9 @@ endif
 DIR := `pwd`
 cloudFrontDistributionID:=$(shell cd terraform && terraform output -raw cloudFrontId)
 
+.env:
+	cp .env.dist .env
+
 update-submodule:
 	git submodule update --remote --recursive
 
