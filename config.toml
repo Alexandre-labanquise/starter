@@ -1,6 +1,5 @@
 defaultContentLanguage = 'fr'
 title = "{{TENANT}}"
-theme = "swingingGyropod"
 
 [params]
 tenant = ""
