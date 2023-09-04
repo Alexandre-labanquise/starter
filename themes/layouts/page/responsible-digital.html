@@ -1,0 +1,132 @@
+{{ define "head" }}
+
+<head>
+  {{ $style := resources.Get "/sass/declaration.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="preload" href="{{ $style.Permalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+</head>
+{{ end }}
+
+{{ define "main" }}
+<div class="declaration-content">
+  <h1>{{i18n "title"}}</h1>
+  {{ block "eco-level" . }}{{ end }}
+  {{ block "evaluation-method" . }}{{ end }}
+  {{$pageCount:=(len .Params.pages)}}
+  {{$isPlural:=gt $pageCount 1}}
+  <h2>{{ i18n "page-impact" (dict "PageCount" $pageCount)}}</h2>
+  {{ range $index,$page := .Params.pages }}
+  {{ block "page-evaluation" (merge (dict "index" (add 1 $index)) (dict "converter" $.Site.Params.GES_CONVERTER) $page)
+  }}
+
+  {{ end }}
+  {{ end }}
+  {{$visitCount:=(len .Params.visit)}}
+  <h2>{{ i18n "visit-impact" (dict "VisitCount" $visitCount)}}</h2>
+  {{ range $index,$visit := .Params.visit }}
+
+  {{$completeVisit:=(merge (dict "index" (add 1 $index) "converter" $.Site.Params.GES_CONVERTER)
+  $visit)}}
+  {{$completePages := slice}}
+  {{ range where $.Params.pages "name" "in" $completeVisit.pages }}
+  {{ $completePages = $completePages|append . }}
+  {{ end }}
+
+  {{$completeVisit:=(merge (dict "completePages" $completePages) $completeVisit)}}
+
+  {{ block "visit" $completeVisit }}
+
+  {{ end }}
+  {{ end }}
+
+  <h2>{{i18n "ecodesign_title"}}</h2>
+  <p>{{i18n "ecodesign_description"}}</p>
+  <p>{{i18n "ecodesign_good_practices_title"}}</p>
+  <h3>{{i18n "design_good_practices_subtitle"}}</h3>
+  <ul>
+    <li>{{i18n "design_good_practice_0"}}</li>
+    <li>{{i18n "design_good_practice_1"}}</li>
+    <li>{{i18n "design_good_practice_2"}}</li>
+    <li>{{i18n "design_good_practice_3"}}</li>
+    <li>{{i18n "design_good_practice_4"}}</li>
+    <li>{{i18n "design_good_practice_5"}}</li>
+    <li>{{i18n "design_good_practice_6"}}</li>
+    <li>{{i18n "design_good_practice_7"}}</li>
+    <li>{{i18n "design_good_practice_8"}}</li>
+    <li>{{i18n "design_good_practice_9"}}</li>
+  </ul>
+  <h3>{{i18n "content_management_good_practices_title"}}</h3>
+  <ul>
+    <li>{{i18n "content_management_good_practices_0" | safeHTML}}</li>
+    <li>{{i18n "content_management_good_practices_1" | safeHTML}}</li>
+    <li>{{i18n "content_management_good_practices_2" | safeHTML}}</li>
+    <li>{{i18n "content_management_good_practices_3" | safeHTML}}</li>
+    <li>{{i18n "content_management_good_practices_4" | safeHTML}}</li>
+    <li>{{i18n "content_management_good_practices_5" | safeHTML}}</li>
+    <li>{{i18n "content_management_good_practices_6" | safeHTML}}</li>
+    <li>{{i18n "content_management_good_practices_7" | safeHTML}}</li>
+  </ul>
+  <h3>{{i18n "development_good_practices_title"}}</h3>
+  <ul>
+    <li>{{i18n "development_good_practices_0" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_1" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_2" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_3" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_4" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_5" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_6" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_7" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_8" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_9" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_10" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_11" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_12" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_13" | safeHTML}}</li>
+    <li>{{i18n "development_good_practices_14" | safeHTML}}</li>
+  </ul>
+  <h3>{{i18n "hosting_good_practices_title"}}</h3>
+  <ul>
+    <li>{{i18n "hosting_good_practices_0" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_1" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_2" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_3" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_4" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_5" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_6" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_7" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_8" | safeHTML}}</li>
+    <li>{{i18n "hosting_good_practices_9" | safeHTML}}</li>
+  </ul>
+  <h3>
+    <strong>{{i18n "make_your_own_declaration"}}</strong>
+  </h3>
+  <p>
+    <a href="https://docs.greenit.fr/declaration-environnementale" target="_blank" rel="noopener"
+      title={{i18n "greenit_doc_title" }}>{{i18n "greenit_doc_label"}}</a>
+  </p>
+  <h3>
+    <strong>{{i18n "good_practices_complete_list" }}</strong>
+  </h3>
+  <p>
+    <a href="https://collectif.greenit.fr/ecoconception-web/115-bonnes-pratiques-eco-conception_web.html"
+      target="_blank" rel="noopener" title={{i18n "greenit_website_title" }}>{{i18n "greenit_website_label"}}</a>
+  </p>
+  <p>
+    <a href="https://github.com/cnumr/best-practices" target="_blank" rel="noopener" title={{i18n "greenit_repo_title"
+      }}>{{i18n "greenit_repo_label"}}</a>
+  </p>
+  <h3>
+    <strong>{{i18n "ecoindex_more_info"}}</strong>
+  </h3>
+  <p>
+    <a href="http://www.ecoindex.fr/quest-ce-que-ecoindex/" target="_blank" rel="noopener"
+      title={{i18n "ecoindex_more_title" }}>{{i18n "ecoindex_more_label"}}</a>
+  </p>
+  <p>
+    <a href="http://www.ecoindex.fr/" target="_blank" rel="noopener" title={{i18n "ecoindex_website_title" }}>{{i18n
+      "ecoindex_website_label"}}</a>
+  </p>
+  <p>
+    <i>{{i18n "most_visited_pages"}}</i>
+  </p>
+</div>
+{{ end }}

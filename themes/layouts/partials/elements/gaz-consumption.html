@@ -1,0 +1,9 @@
+{{ define "gaz-consumption" }}
+{{$ges:=.ges | truncate 4 ""}}
+{{$carMovements:=math.Round (div .ges .converter) | truncate 4 ""}}
+<li>{{i18n "gas_consumption" (dict "ges" $ges "carMovements" $carMovements) | safeHTML}}
+  {{ if .isAverage }}
+  <sup>*</sup>
+  {{ end }}
+</li>
+{{ end }}
