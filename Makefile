@@ -16,6 +16,7 @@ update-submodule:
 
 init-responsible-digital:
 	git submodule init
+	git submodule add https://github.com/Labanquise/declaration-theme themes/declaration
 	git submodule update --recursive --remote
 	(cd themes/declaration && sudo sh init.sh)
 
